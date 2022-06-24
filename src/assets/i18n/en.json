@@ -1,0 +1,19 @@
+{
+  "core": {
+    "welcome": "Welcome {{loggedinuser}}",
+    "user_info": {
+      "name": "Name",
+      "working_profile": "Working profile",
+      "address_details": "Address details",
+      "phone_number": "Phone number",
+      "email_address": "Email address",
+      "relevant_experience": "Relevant experience",
+      "myaccount": "My Account"
+    },
+    "changelanguage": "Change Language :",
+    "moto": "Streaming Platform"
+  },
+  "product": {
+    "id": "ID:"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "core": {
+    "welcome": "Bienvenue {{loggedInUser}}",
+    "user_info": {
+      "name": "Nom",
+      "working_profile": "Profil de travail",
+      "address_details": "Détails de l'adresse",
+      "phone_number": "Numéro de téléphone",
+      "email_address": "Adresse e-mail",
+      "relevant_experience": "Expérience pertinente",
+      "myaccount": "My Account"
+    },
+    "changelanguage":"Change Language :"
+  }
+}
