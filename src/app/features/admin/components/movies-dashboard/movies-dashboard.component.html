@@ -1,0 +1,89 @@
+<nav class="navbar navbar-light bg-primary ">
+  <div class="container-fluid">
+    <h1>Hulu - Admin </h1>
+    <div class="d-flex">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-form">Add
+        Movies</button>
+    </div>
+  </div>
+</nav>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">IMBD Rating</th>
+      <th scope="col">Language</th>
+      <th scope="col">genre</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let show of shows$ | async">
+      <tr>
+        <td>{{show.id}}</td>
+        <td>{{show.name}}</td>
+        <td>{{show.description}}</td>
+        <td>{{show.title}}</td>
+        <td>{{show.language}}</td>
+        <td>{{show.genre}}</td>
+        <td>{{show.rating}}</td>
+        <td>{{show.image}}</td>
+      </tr>
+    </ng-container>
+
+  </tbody>
+</table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="add-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Movies Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="formValue">
+          <input formControlName="id" type="hidden" id="id">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input formControlName="name" type="text" class="form-control" id="name">
+          </div>
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input formControlName="title" type="text" class="form-control" id="title">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input formControlName="description" type="text" class="form-control" id="description">
+          </div>
+          <div class="mb-3">
+            <label for="rating" class="form-label">IMBD Rating</label>
+            <input formControlName="rating" type="text" class="form-control" id="rating">
+          </div>
+          <div class="mb-3">
+            <label for="language" class="form-label">Language</label>
+            <input formControlName="language" type="text" class="form-control" id="language">
+          </div>
+          <div class="mb-3">
+            <label for="genre" class="form-label">Genre</label>
+            <input formControlName="genre" type="text" class="form-control" id="genre">
+          </div>
+          <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input formControlName="image" type="text" class="form-control" id="image">
+          </div>
+          <button type="submit" (click)="addShow(formValue)" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

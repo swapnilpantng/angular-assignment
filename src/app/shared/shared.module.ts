@@ -4,17 +4,21 @@ import { MyMaterialModule } from './my-material.module';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
+const modules = [
+  MyMaterialModule,
+  HttpClientModule,
+  ReactiveFormsModule,
+  FormsModule]
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    MyMaterialModule,
-    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -22,11 +26,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
+    ...modules,
   ],
   exports: [
-    MyMaterialModule,
     TranslateModule,
-    HttpClientModule,
+    ...modules
   ]
 })
 export class SharedModule {

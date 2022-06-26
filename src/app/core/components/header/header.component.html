@@ -1,32 +1,19 @@
-<mat-toolbar color="primary"
-  ><mat-toolbar-row>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
     <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
     <span>Hulu - {{ "core.moto" | translate }}</span>
     <span class="example-spacer"></span>
-    <mat-icon
-      class="example-icon"
-      aria-hidden="false"
-      aria-label="Example user verified icon"
-      >verified_user</mat-icon
-    >
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">verified_user</mat-icon>
     <mat-form-field appearance="fill">
       <mat-label>{{ "core.changelanguage" | translate }}</mat-label>
-      <select
-        matNativeControl
-        class="language-selector"
-        #selLang
-        (change)="translateLanguageTo(selLang.value)"
-      >
-        <option
-          *ngFor="let language of translate.getLangs()"
-          [value]="language"
-        >
+      <select matNativeControl class="language-selector" #selLang (change)="translateLanguageTo(selLang.value)">
+        <option *ngFor="let language of translate.getLangs()" [value]="language">
           {{ language }}
         </option>
       </select>
     </mat-form-field>
 
-    <mat-accordion class="example-headers-align">
+    <mat-accordion class="account-headers-align">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-description>
@@ -34,20 +21,15 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <button mat-button color="primary" (click)="this.routeService.goto('users')">
-          Users
+          {{ "core.user_info.myaccount" | translate }}
         </button>
-        <button mat-button color="accent" (click)="this.routeService.goto('products')">
-          Products
+        <button mat-button color="accent" (click)="this.routeService.goto('shows')">
+          Shows
         </button>
-        <ol appearance="fill">
-          <li>
-            <a>{{ "core.user_info.myaccount" | translate }}</a>
-          </li>
-          <li>
-            <a>Log out</a>
-          </li>
-        </ol>
+        <button mat-button color="accent" (click)="this.routeService.goto('shows')">
+          log out
+        </button>
       </mat-expansion-panel>
     </mat-accordion>
-  </mat-toolbar-row></mat-toolbar
->
+  </mat-toolbar-row>
+</mat-toolbar>

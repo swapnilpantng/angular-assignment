@@ -5,7 +5,11 @@ import { AppComponent } from './app.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { ProductsModule } from './features/products/products.module';
+import { ShowsModule } from './features/shows/shows.module';
+import { AdminModule } from './features/admin/admin.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+// import { appReducer } from './state/app.reducers';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,12 @@ import { ProductsModule } from './features/products/products.module';
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    ProductsModule,
+    ShowsModule,
+    AdminModule,
+    StoreModule.forRoot({
+      // "root": appReducer
+    }),
+    EffectsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
