@@ -4,8 +4,6 @@ import { ShowComponent } from './components/show/show.component';
 import { ShowListComponent } from './components/show-list/show-list.component';
 import { SharedModule } from './../../shared/shared.module';
 
-
-
 @NgModule({
   declarations: [
     ShowComponent,

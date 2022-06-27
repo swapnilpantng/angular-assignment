@@ -1,8 +1,12 @@
 export interface ICustomer {
   id: number;
   name: string;
-  mobile: Number;
-  isPrime: Boolean;
+  dob: string;
+  email: string;
   password: string;
+  isPrime: Boolean;
   token: string;
+  watched: any;
+  favorite: any;
+  watchLater: any;
 }

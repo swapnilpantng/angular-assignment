@@ -1,0 +1,11 @@
+<h2>Customer List</h2>
+
+<ul class="customers">
+  <li *ngFor="let customer of customers">
+    <!-- <a routerLink="/detail/{{hero.id}}"> -->
+      <span class="badge">{{customer.id}}</span> {{customer.name}}
+    <!-- </a> -->
+    <!-- <button type="button" class="delete" title="delete hero"
+      (click)="delete(hero)">x</button> -->
+  </li>
+</ul>

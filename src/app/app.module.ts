@@ -7,8 +7,12 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { ShowsModule } from './features/shows/shows.module';
 import { AdminModule } from './features/admin/admin.module';
+import { CustomerModule } from './features/customer/customer.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthGuard } from './auth.guard';
+import { InMemoryDataService } from './shared/db/in-memory-data.service';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { appReducer } from './state/app.reducers';
 
 @NgModule({
@@ -22,12 +26,16 @@ import { EffectsModule } from '@ngrx/effects';
     SharedModule,
     ShowsModule,
     AdminModule,
+    CustomerModule,
     StoreModule.forRoot({
       // "root": appReducer
     }),
-    EffectsModule.forRoot()
+    EffectsModule.forRoot(),
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false, passThruUnknownUrl: true}
+    )
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

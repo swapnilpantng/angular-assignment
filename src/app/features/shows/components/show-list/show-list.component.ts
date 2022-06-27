@@ -15,35 +15,41 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ShowListComponent implements OnInit {
 
-  public shows$ = this.store.select(getAllShows);
+  // public shows$ = this.getShows();
   public noOfShows = 0;
 
   constructor(
     public translate: TranslateService,
-    private store: Store<ShowState>) { }
+    private store: Store<ShowState>,
+    private showsService: ShowsService) { }
 
   @Input() shows: Array<IShow> = [];
 
   ngOnInit(): void {
-    this.shows$.subscribe(allShows => {
-      this.noOfShows = allShows.length;
-      this.store.dispatch(UpdateAllShows({
-        allShows
-      }))
-    });
-    this.store.dispatch(LoadShow());
-    this.shows = [
-      {
-        id: 1,
-        name: "Sample Show",
-        title: "Amazing show",
-        description: "Amazing show",
-        language: "English",
-        genre: "Shonen",
-        rating: 4.5,
-        image: ""
-      }
-    ];
+    this.getShows()
+    // this.shows$.subscribe(allShows => {
+    //   this.noOfShows = allShows.length;
+    //   this.store.dispatch(UpdateAllShows({
+    //     allShows
+    //   }))
+    // });
+    // this.store.dispatch(LoadShow());
+    // this.shows = [
+    //   {
+    //     id: 1,
+    //     name: "Sample Show",
+    //     title: "Amazing show",
+    //     description: "Amazing show",
+    //     language: "English",
+    //     genre: "Shonen",
+    //     rating: 4.5,
+    //     image: ""
+    //   }
+    // ];
   }
 
+  getShows(): void {
+    this.showsService.getShows()
+    .subscribe(shows => this.shows = shows);
+  }
 }

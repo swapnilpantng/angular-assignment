@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-signup',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerSignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private routes: Router) { }
+  gender!: string;
 
   ngOnInit(): void {
   }
 
+  register() {
+    this.routes.navigate(['/'])
+  }
 }

@@ -20,10 +20,3 @@ export const showReducer = createReducer(
   on(RemoveShowAction, (state, payload) => { return { shows: state.shows.filter(show => show.id !== payload.id) } }),
   on(LoadShowSuccess, (state, payload) => { console.log('success reducer', payload);return { shows: [...payload.shows] } })
 );
-
-// export const showReducer = createReducer(
-//     shows,
-//   on(AddShowAction, (state, payload) => {
-//       return [...state]
-//   })
-// );

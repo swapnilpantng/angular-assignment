@@ -5,6 +5,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MessagesComponent } from './messages/components/messages/messages.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -14,9 +15,11 @@ const modules = [
   MyMaterialModule,
   HttpClientModule,
   ReactiveFormsModule,
-  FormsModule]
+  FormsModule
+]
+
 @NgModule({
-  declarations: [],
+  declarations: [MessagesComponent],
   imports: [
     CommonModule,
     TranslateModule.forRoot({
@@ -30,6 +33,7 @@ const modules = [
   ],
   exports: [
     TranslateModule,
+    MessagesComponent,
     ...modules
   ]
 })
