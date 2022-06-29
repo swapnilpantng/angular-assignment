@@ -1,5 +1,5 @@
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { IShow } from '../../interfaces/show.interface';
+import { IShow } from '../../../features/shows/interfaces/show.interface';
 
 @Component({
   selector: 'app-show',
@@ -9,4 +9,16 @@ import { IShow } from '../../interfaces/show.interface';
 export class ShowComponent {
 
   @Input() show?: IShow;
+
+  watchClick() {
+    console.log("watchClick");
+  }
+
+  watchLaterClick() {
+    console.log("watchLaterClick");
+  }
+
+  favoriteClick() {
+    console.log("favoriteClick");
+  }
 }

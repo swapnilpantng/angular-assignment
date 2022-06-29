@@ -1,9 +1,8 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
-    <span>Hulu - {{ "core.moto" | translate }}</span>
+    <span (click)="this.routeService.goto('')">Hulu - {{ "core.moto" | translate }}</span>
     <span class="example-spacer"></span>
-    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">verified_user</mat-icon>
     <mat-form-field appearance="fill">
       <mat-label>{{ "core.changelanguage" | translate }}</mat-label>
       <select matNativeControl class="language-selector" #selLang (change)="translateLanguageTo(selLang.value)">
@@ -12,8 +11,10 @@
         </option>
       </select>
     </mat-form-field>
-
-    <mat-accordion class="account-headers-align">
+    <button *ngIf="isLogin == undefined || isLogin == false" mat-button (click)="this.routeService.goto('login')" >
+      <mat-label>{{ "core.login" | translate }}</mat-label>
+    </button>
+    <mat-accordion *ngIf="this.isLogin" class="account-headers-align">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-description>
@@ -23,10 +24,10 @@
         <button mat-button color="primary" (click)="this.routeService.goto('users')">
           {{ "core.user_info.myaccount" | translate }}
         </button>
-        <button mat-button color="accent" (click)="this.routeService.goto('shows')">
+        <button mat-button color="primary" (click)="this.routeService.goto('shows')">
           Shows
         </button>
-        <button mat-button color="accent" (click)="this.routeService.goto('shows')">
+        <button mat-button color="primary" (click)="logout()">
           log out
         </button>
       </mat-expansion-panel>

@@ -11,5 +11,16 @@
       "myaccount": "My Account"
     },
     "changelanguage":"Change Language :"
+  },
+  "show": {
+    "name": "Nom",
+    "title": "Titre",
+    "description": "La description",
+    "genre": "Genre",
+    "rating": "Évaluation IMDB",
+    "language": "Langue",
+    "watch": "Regarde maintenant",
+    "watch-later": "Ajouter à Lire plus tard",
+    "favorite": "Ajouter aux Favoris"
   }
 }

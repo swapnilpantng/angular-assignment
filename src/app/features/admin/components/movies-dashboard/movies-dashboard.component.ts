@@ -50,5 +50,6 @@ export class MoviesDashboardComponent implements OnInit {
     this.store.dispatch(AddShowAction({
       show: content.value
     }))
+    this.formValue.reset()
   }
 }

@@ -1,9 +1,9 @@
 import { Injectable, Input, Output } from '@angular/core';
 import { IShow } from '../interfaces/show.interface';
-import { map, Observable, of } from 'rxjs';
+import { forkJoin, map, Observable, of, throwError } from 'rxjs';
 import { MessageService } from 'src/app/shared/messages/services/message.service';
 import { catchError, tap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class ShowsService {
   @Input() @Output() shows: Array<IShow> = [];
   private showsUrl = 'api/shows';
+  shows$!: Observable<IShow[]>
 
   constructor(
     private http: HttpClient,
@@ -60,11 +61,24 @@ export class ShowsService {
   getShow(id: number): Observable<IShow> {
     const url = `${this.showsUrl}/${id}`;
     return this.http.get<IShow>(url).pipe(
-      tap(_ => this.log(`fetched Show id=${id}`)),
+      // tap(_ => this.log(`fetched Show id=${id}`)),
       catchError(this.handleError<IShow>(`getShow id=${id}`))
     );
   }
 
+  createShow(show: IShow): Observable<IShow> {
+    console.log(show)
+    return this.http.post<IShow>(this.showsUrl, show).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error(error);
+        return throwError(error);
+      })
+    )
+  }
+
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete(this.showsUrl + id);
+  }
   /**
  * Handle Http operation that failed.
  * Let the app continue.
@@ -84,18 +98,5 @@ export class ShowsService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
-  }
-
-  searchShows(term: string): Observable<IShow[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.get<IShow[]>(`${this.showsUrl}/?name=${term}&title=${term}&description=${term}&genre=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found Show matching "${term}"`) :
-        this.log(`no Show matching "${term}"`)),
-      catchError(this.handleError<IShow[]>('searchShows', []))
-    );
   }
 }

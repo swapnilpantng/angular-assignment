@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 export class EnsureModuleLoadedOnceGuard {
   constructor(targetModule: any) {
@@ -20,11 +20,12 @@ const components = [
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
+    HomepageComponent
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [...components]
 })

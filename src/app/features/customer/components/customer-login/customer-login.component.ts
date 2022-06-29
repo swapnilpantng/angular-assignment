@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { ICustomer } from '../../interfaces/customer.interface';
 import { CustomerService } from '../../services/customer.service';
 
 @Component({
@@ -14,29 +16,31 @@ export class CustomerLoginComponent implements OnInit {
   username!: string;
   password!: string;
   showSpinner!: boolean;
+  customers!: Observable<ICustomer[]>;
 
   ngOnInit(): void {
   }
 
-  check(username: string, passowrd: string) {
-    var output = this.customerService.checkUserNameAndPassword(username, passowrd);
-    if (output) {
-      this.routes.navigate(['/shows']);
-    }
-    else {
-      this.msg = "Invalid Username or Password"
-    }
-  }
-
   checkLogin() {
-    this.showSpinner = true;
-    var output = this.customerService.checkUserNameAndPassword(this.username, this.password);
-    if (output) {
-      this.routes.navigate(['/shows']);
-    }
-    else {
-      this.msg = "Invalid Username or Password"
-    }
-    this.showSpinner = false;
+    var output
+    this.customers = this.customerService.getCustomers();
+    this.customers.subscribe(customers => {
+      this.showSpinner = true;
+      var shows = customers;
+      output = customers.filter(it => {
+        return it.email == this.username
+          && it.password == this.password;
+      })
+      console.log(output);
+      if (output.length > 0) {
+        this.customerService.setSession(output[0]);
+        this.customerService.log(`Welcome, ${output[0].name}`);
+        this.routes.navigate(['/shows']);
+      }
+      else {
+        this.msg = "Invalid Username or Password"
+      }
+      this.showSpinner = false;
+    })
   }
 }

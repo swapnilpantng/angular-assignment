@@ -1,33 +1,32 @@
-<mat-card-content>
-  <form class="signup-form">
+<form class="signup-form" [formGroup]="form">
+  <mat-card-content>
     <mat-form-field class="full-width invisible">
       <input class="invisible" matInput name="id" />
     </mat-form-field>
     <mat-form-field class="full-width">
       <mat-label>Name</mat-label>
-      <input matInput placeholder="First name" name="name" required />
+      <input matInput formControlName="name" placeholder="Name" name="name" required />
     </mat-form-field>
     <mat-form-field class="full-width">
       <mat-label>Email</mat-label>
-      <input matInput placeholder="Email" name="email" required />
+      <input matInput formControlName="email" placeholder="Email" name="email" required />
     </mat-form-field>
-    <mat-form-field>
+    <!-- <mat-form-field>
       <mat-label>Date of Birth</mat-label>
       <input matInput [matDatepicker]="dob" placeholder="Choose a date" />
       <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
       <mat-datepicker #dob></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field> -->
     <mat-form-field class="full-width">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="Password" name="password" required />
+      <input matInput formControlName="password" type="password" placeholder="Password" name="password" required />
     </mat-form-field>
     <section class="optin-prime-section">
-      <mat-checkbox class="isPrime">Opt-in Prime membership</mat-checkbox>
+      <mat-checkbox formControlName="isprime" class="isPrime" name="isprime">Opt-in Prime membership</mat-checkbox>
     </section>
-  </form>
-</mat-card-content>
-<mat-card-actions>
-  <button mat-raised-button (click)="register()" color="primary">REGISTER</button>
-</mat-card-actions>
-<a routerLink='/login' routerLinkActive="router-link-active" >Already a user? Click to login!</a>
-
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="register()" color="primary">REGISTER</button>
+  </mat-card-actions>
+</form>
+<a [routerLink]="['/login']" routerLinkActive="router-link-active">Already a user? Click to login!</a>

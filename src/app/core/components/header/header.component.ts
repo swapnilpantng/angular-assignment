@@ -4,6 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouteService } from '../../services/route.service'
+import { CustomerService } from 'src/app/features/customer/services/customer.service';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +13,14 @@ import { RouteService } from '../../services/route.service'
 })
 export class HeaderComponent implements OnInit {
   title = 'angular-assignment';
+  isLogin!: boolean;
 
   constructor(
     public translate: TranslateService,
     private breakpointObserver: BreakpointObserver,
-    public routeService: RouteService
-  ){
+    public routeService: RouteService,
+    private customerService: CustomerService
+  ) {
     translate.addLangs(['en', 'fr']);
     translate.setDefaultLang('en');
 
@@ -28,12 +31,21 @@ export class HeaderComponent implements OnInit {
   }
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-  .pipe(
-    map(result => result.matches),
-    shareReplay()
-  );
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
   ngOnInit(): void {
+    this.customerService.isLoggedIn().subscribe(loggedIn => {
+      console.log(loggedIn);
+      this.isLogin = loggedIn;
+    });
+    console.log(this.isLogin);
   }
 
+  logout() {
+    this.customerService.logOut()
+    this.routeService.goto('/');
+  }
 }

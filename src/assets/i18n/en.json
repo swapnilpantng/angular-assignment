@@ -11,9 +11,21 @@
       "myaccount": "My Account"
     },
     "changelanguage": "Change Language :",
+    "login": "Login",
     "moto": "Streaming Platform"
   },
   "product": {
     "id": "ID:"
+  },
+  "show": {
+    "name": "Name",
+    "title": "Title",
+    "description": "Description",
+    "genre": "Genre",
+    "rating": "IMBD Rating",
+    "language": "Language",
+    "watch": "Watch Now",
+    "watch-later": "Add to Watch Later",
+    "favorite": "Add to Favorite"
   }
 }

@@ -1,32 +1,24 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService } from 'src/app/shared/messages/services/message.service';
 import { ICustomer } from '../interfaces/customer.interface';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
+  private loggedIn = false;
+  private customersUrl = 'api/customers/';
+  private logger = new Subject<boolean>();
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
-  private customersUrl = 'api/customers/';
-
-  checkUserNameAndPassword(username: string, password: string) {
-    if (username == "admin" && password == "admin") {
-      localStorage.setItem('user', "swapnil");
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-
-  private log(message: string) {
+  public log(message: string) {
     this.messageService.add(`CustomerService: ${message}`);
   }
 
@@ -67,16 +59,30 @@ export class CustomerService {
     };
   }
 
-  searchCustomers(term: string): Observable<ICustomer[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.get<ICustomer[]>(`${this.customersUrl}/?name=${term}&email=${term}`).pipe(
-      tap(x => x.length ?
-         this.log(`found customer matching "${term}"`) :
-         this.log(`no customer matching "${term}"`)),
-      catchError(this.handleError<ICustomer[]>('searchCustomers', []))
+  isLoggedIn(): Observable<boolean> {
+    return this.logger.asObservable();
+  }
+
+  register(customer: ICustomer): Observable<ICustomer> {
+    return this.http.post<ICustomer>(`${this.customersUrl}`, customer).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error(error);
+        return throwError(error);
+      })
     );
+  }
+
+  setSession(customer: ICustomer) {
+    localStorage.setItem('user', customer.email);
+    localStorage.setItem('isprime', String(customer.isPrime));
+    this.loggedIn = true;
+    this.logger.next(this.loggedIn);
+  }
+
+  logOut() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('isprime');
+    this.loggedIn = false;
+    this.logger.next(this.loggedIn);
   }
 }
