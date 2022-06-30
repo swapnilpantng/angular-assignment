@@ -38,10 +38,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerService.isLoggedIn().subscribe(loggedIn => {
-      console.log(loggedIn);
       this.isLogin = loggedIn;
     });
-    console.log(this.isLogin);
   }
 
   logout() {

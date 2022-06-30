@@ -1,34 +1,37 @@
-<section fxLayout="row wrap" class="product-details" fxLayoutAlign="center center" *ngIf="show$ | async as show">
-  <mat-card fxFlex="500px" fxFlex.xs="100%">
-    <div class="left">
-      <img class="show-image" mat-card-image src='{{show?.image}}'
-        alt="https://material.angular.io/assets/img/examples/shiba2.jpg">
-    </div>
-    <div class="right">
-      <mat-card-title>{{ show.name }}</mat-card-title>
-      <mat-card-subtitle>{{ show.title }}</mat-card-subtitle>
-      <mat-card-content>
-        <div fxLayout="column wrap" fxLayoutGap="40px">
-          <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>{{ 'show.description' | translate}}</strong></div>
-            <div fxFlex>{{show?.description}}</div>
+<div class="container" *ngIf="show$ | async as show">
+  <section fxLayout="row wrap" class="product-details" fxLayoutAlign="center center">
+    <mat-card fxFlex="500px" fxFlex.xs="100%">
+      <div class="left">
+        <img class="show-image" mat-card-image src='{{show?.image}}'
+          alt="https://material.angular.io/assets/img/examples/shiba2.jpg">
+      </div>
+      <div class="right">
+        <mat-card-title>{{ show.name }}</mat-card-title>
+        <mat-card-subtitle>{{ show.title }}</mat-card-subtitle>
+        <mat-card-content>
+          <div fxLayout="column wrap" fxLayoutGap="40px">
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>{{ 'show.description' | translate}}</strong></div>
+              <div fxFlex>{{show?.description}}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>{{ 'show.rating' | translate}}</strong></div>
+              <div fxFlex>{{show?.rating }}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>{{ 'show.genre' | translate}}</strong></div>
+              <div fxFlex>{{show?.genre }}</div>
+            </div>
+            <div fxLayout="row wrap" fxFlex>
+              <div fxFlex><strong>{{ 'show.language' | translate}}</strong></div>
+              <div fxFlex>{{show?.language }}</div>
+            </div>
           </div>
-          <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>{{ 'show.rating' | translate}}</strong></div>
-            <div fxFlex>{{show?.rating }}</div>
-          </div>
-          <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>{{ 'show.genre' | translate}}</strong></div>
-            <div fxFlex>{{show?.genre }}</div>
-          </div>
-          <div fxLayout="row wrap" fxFlex>
-            <div fxFlex><strong>{{ 'show.language' | translate}}</strong></div>
-            <div fxFlex>{{show?.language }}</div>
-          </div>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-      </mat-card-actions>
-    </div>
-  </mat-card>
-</section>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </section>
+  <app-review [showid]="show?.id"></app-review>
+</div>

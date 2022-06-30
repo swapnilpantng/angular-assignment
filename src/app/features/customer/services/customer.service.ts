@@ -33,7 +33,6 @@ export class CustomerService {
   getCustomer(id: number): Observable<ICustomer> {
     const url = `${this.customersUrl}/${id}`;
     return this.http.get<ICustomer>(url).pipe(
-      tap(_ => this.log(`fetched Customer id=${id}`)),
       catchError(this.handleError<ICustomer>(`getCustomer id=${id}`))
     );
   }
@@ -73,6 +72,7 @@ export class CustomerService {
   }
 
   setSession(customer: ICustomer) {
+    localStorage.setItem('id', String(customer.id));
     localStorage.setItem('user', customer.email);
     localStorage.setItem('isprime', String(customer.isPrime));
     this.loggedIn = true;

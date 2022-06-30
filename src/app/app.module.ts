@@ -13,15 +13,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthGuard } from './auth.guard';
 import { InMemoryDataService } from './shared/db/in-memory-data.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { SearchBarComponent } from './features/search/components/search-bar/search-bar.component';
-import { SearchPageComponent } from './features/search/components/search-page/search-page.component';
+import { SearchModule } from './features/search/search.module';
 // import { appReducer } from './state/app.reducers';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SearchBarComponent,
-    SearchPageComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +35,7 @@ import { SearchPageComponent } from './features/search/components/search-page/se
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false, passThruUnknownUrl: true}
     ),
+    SearchModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ShowListComponent } from './components/show-list/show-list.component';
 import { SharedModule } from './../../shared/shared.module';
 import { ShowDetailComponent } from './components/show-detail/show-detail.component';
+import { ReviewModule } from '../review/review.module';
 
 @NgModule({
   declarations: [
@@ -11,9 +12,11 @@ import { ShowDetailComponent } from './components/show-detail/show-detail.compon
   ],
   imports: [
     CommonModule,
+    ReviewModule,
     SharedModule
   ],
   exports: [
-    ShowListComponent]
+    ShowListComponent
+  ]
 })
 export class ShowsModule { }

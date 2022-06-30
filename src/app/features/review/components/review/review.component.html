@@ -1,0 +1,15 @@
+<div class="container" *ngFor="let review of reviews">
+  <mat-icon *ngFor="let i of numToArr(review.rating)" color="yellow">
+    star
+  </mat-icon>
+  <mat-icon *ngFor="let i of numToArr(10 - review.rating)">
+    star_border
+  </mat-icon>
+  <br>
+  <span>
+    Show is rated <span>{{review.rating}}</span>/<span>10</span><br>
+  </span>
+  <span>{{'core.user_info.name'|translate}}: {{review.customername}}</span><br>
+  <span>{{'comment'|translate}}: {{review.comment}}</span><br>
+  <span>------------------------------------------------</span>
+</div>

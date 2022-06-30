@@ -14,6 +14,9 @@
     <button *ngIf="isLogin == undefined || isLogin == false" mat-button (click)="this.routeService.goto('login')" >
       <mat-label>{{ "core.login" | translate }}</mat-label>
     </button>
+    <button mat-button (click)="this.routeService.goto('shows')" >
+      <mat-label>{{ "core.shows" | translate }}</mat-label>
+    </button>
     <mat-accordion *ngIf="this.isLogin" class="account-headers-align">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
@@ -21,7 +24,7 @@
             <mat-icon>account_circle</mat-icon>
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <button mat-button color="primary" (click)="this.routeService.goto('users')">
+        <button mat-button color="primary" (click)="this.routeService.goto('customerDashboard')">
           {{ "core.user_info.myaccount" | translate }}
         </button>
         <button mat-button color="primary" (click)="this.routeService.goto('shows')">

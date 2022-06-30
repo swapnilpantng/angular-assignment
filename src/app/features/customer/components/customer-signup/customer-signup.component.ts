@@ -11,9 +11,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./customer-signup.component.less']
 })
 export class CustomerSignupComponent implements OnInit {
-  gender!: string;
   loading = false;
-  submitted = false;
   form!: FormGroup;
 
   constructor(
@@ -35,8 +33,6 @@ export class CustomerSignupComponent implements OnInit {
   get f() { return this.form.controls; }
 
   register() {
-    this.submitted = true;
-
     if (this.form.invalid) {
       return;
     }
@@ -48,7 +44,6 @@ export class CustomerSignupComponent implements OnInit {
       this.customerService.log(`Welcome ${response.name}`);
       this.customerService.setSession(response);
       this.customerService.getCustomers().subscribe(customer => {
-        console.log(customer)
       })
       this.routes.navigate(['/'])
     },

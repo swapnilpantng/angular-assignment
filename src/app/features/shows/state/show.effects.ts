@@ -10,9 +10,6 @@ export class ShowEffects {
 
   loadShows$ = createEffect(() => this.actions$.pipe(
     ofType(showActions.LoadShow.type),
-    tap(a => {
-        console.log("effect executed", a)
-    }),
     mergeMap(() => this.showService.populateShows()
       .pipe(
         map(shows => ({ type: showActions.LoadShowSuccess.type, shows })),

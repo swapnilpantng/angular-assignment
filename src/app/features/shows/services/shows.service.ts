@@ -67,7 +67,6 @@ export class ShowsService {
   }
 
   createShow(show: IShow): Observable<IShow> {
-    console.log(show)
     return this.http.post<IShow>(this.showsUrl, show).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(error);

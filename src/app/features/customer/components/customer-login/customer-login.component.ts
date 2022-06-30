@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
 import { ICustomer } from '../../interfaces/customer.interface';
 import { CustomerService } from '../../services/customer.service';
@@ -11,7 +12,7 @@ import { CustomerService } from '../../services/customer.service';
 })
 export class CustomerLoginComponent implements OnInit {
 
-  constructor(private customerService: CustomerService, private routes: Router) { }
+  constructor(private customerService: CustomerService, private routes: Router, private translate: TranslateService) { }
   msg!: string;
   username!: string;
   password!: string;
@@ -31,10 +32,11 @@ export class CustomerLoginComponent implements OnInit {
         return it.email == this.username
           && it.password == this.password;
       })
-      console.log(output);
       if (output.length > 0) {
         this.customerService.setSession(output[0]);
-        this.customerService.log(`Welcome, ${output[0].name}`);
+        this.translate.get('core.welcome', { loggedinuser: output[0].name }).subscribe((data: any) => {
+          this.customerService.log(data);
+        });
         this.routes.navigate(['/shows']);
       }
       else {

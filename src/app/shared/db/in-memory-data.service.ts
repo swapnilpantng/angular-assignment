@@ -24,7 +24,22 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 19, name: 'Magma', email: "sdasd@dsadas.com", password: "admin", isPrime: false },
       { id: 20, name: 'Tornado', email: "sdasd@dsadas.com", password: "admin", isPrime: false }
     ];
-    return { shows, customers};
+    const reviews = [
+      {id:1, showid:1, comment: "work of art", rating: 8, customername:"swapnil"},
+      {id:2, showid:1, comment: "average", rating: 5, customername:"vitalii"},
+      {id:3, showid:2, comment: "good to watch", rating: 6, customername:"Yale"},
+      {id:4, showid:2, comment: "perfect", rating: 10, customername:"Mukesh"},
+      {id:5, showid:2, comment: "great", rating: 8, customername:"samantha"},
+      {id:5, showid:2, comment: "excellent", rating: 9, customername:"pikachu"},
+      {id:5, showid:2, comment: "great animations", rating: 9, customername:"zoro"},
+      {id:5, showid:3, comment: "work of art", rating: 5, customername:"nike"},
+      {id:5, showid:3, comment: "niche", rating: 8, customername:"klaus"},
+      {id:5, showid:3, comment: "awesome", rating: 9, customername:"mimaw"},
+      {id:5, showid:1, comment: "sample", rating: 3, customername:"Adrian"},
+      {id:5, showid:1, comment: "sample", rating: 4, customername:"yatesh"},
+      {id:5, showid:3, comment: "sample", rating: 7, customername:"manas"},
+    ]
+    return { shows, customers, reviews};
   }
 
   genShowsId(shows: IShow[]): number {

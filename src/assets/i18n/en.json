@@ -12,7 +12,8 @@
     },
     "changelanguage": "Change Language :",
     "login": "Login",
-    "moto": "Streaming Platform"
+    "moto": "Streaming Platform",
+    "shows": "Shows"
   },
   "product": {
     "id": "ID:"
@@ -27,5 +28,6 @@
     "watch": "Watch Now",
     "watch-later": "Add to Watch Later",
     "favorite": "Add to Favorite"
-  }
+  },
+  "comment":"User Comment"
 }
