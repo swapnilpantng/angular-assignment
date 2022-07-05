@@ -20,7 +20,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ---
 
-github link: GitHub - swapnilpantng/angular-assignment – master branch
+github link: https://github.com/swapnilpantng/angular-assignment – master branch
 
 deployed link -
 
