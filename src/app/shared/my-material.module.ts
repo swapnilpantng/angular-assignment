@@ -22,6 +22,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 const modules = [
@@ -47,7 +48,8 @@ const modules = [
     MatRadioModule,
     MatNativeDateModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
 ]
 
 @NgModule({

@@ -1,6 +1,6 @@
 {
   "core": {
-    "welcome": "Bienvenue {{loggedInUser}}",
+    "welcome": "Bienvenue {{loggedinuser}}",
     "user_info": {
       "name": "Nom",
       "working_profile": "Profil de travail",
@@ -8,9 +8,25 @@
       "phone_number": "Numéro de téléphone",
       "email_address": "Adresse e-mail",
       "relevant_experience": "Expérience pertinente",
-      "myaccount": "My Account"
+      "myaccount": "Mon compte",
+      "watched": "Watched",
+      "favorite": "Regardé",
+      "watch-later": "Regarder plus tard",
+      "title-dashboard": "Tableau de bord client",
+      "optin-checkobox-label": "Adhésion Prime opt-in"
     },
-    "changelanguage":"Change Language :"
+    "changelanguage": "Changer de langue :",
+    "login": "Connexion",
+    "moto": "Plate-forme de diffusion en continu",
+    "shows": "Spectacles",
+    "no-prime-message": "Pas un abonnement principal. Fonctionnalité limitée à l'utilisateur principal uniquement",
+    "no-login": "S'il vous plait Connectez-vous d'abord",
+    "username": "Nom d'utilisateur",
+    "password": "Mot de passe",
+    "invalid-credential": "Nom d'utilisateur ou mot de passe invalide"
+  },
+  "product": {
+    "id": "ID:"
   },
   "show": {
     "name": "Nom",
@@ -23,5 +39,16 @@
     "watch-later": "Ajouter à Lire plus tard",
     "favorite": "Ajouter aux Favoris"
   },
-  "new-user": "FR SWAPNIL New user? Click to signup!"
+  "comment": "Commentaire de l'utilisateur",
+  "save": "sauvegarder",
+  "clear-message": "Effacer les messages",
+  "prime-update": "Le statut principal est mis à jour",
+  "new-user": "Nouvel utilisateur? Cliquez pour vous inscrire !",
+  "already-user": "Déjà utilisateur ? Cliquez pour vous connecter !",
+  "shows": "Spectacles",
+  "logout": "Se déconnecter",
+  "you-have-watched": "Vous avez regardé {{showname}}",
+  "you-have-favorite": "Vous avez ajouté {{showname}} préférer",
+  "you-have-watchLater": "Vous avez ajouté {{showname}} à regarder plus tard",
+  "Search":"Chercher"
 }

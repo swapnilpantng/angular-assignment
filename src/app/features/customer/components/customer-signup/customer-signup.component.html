@@ -4,23 +4,23 @@
       <input class="invisible" matInput name="id" />
     </mat-form-field>
     <mat-form-field class="full-width">
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="name" placeholder="Name" name="name" required />
+      <mat-label>{{'core.user_info.name' | translate}}</mat-label>
+      <input matInput formControlName="name" placeholder="{{'core.user_info.name' | translate}}" name="name" required />
     </mat-form-field>
     <mat-form-field class="full-width">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" placeholder="Email" name="email" required />
+      <mat-label>{{'core.user_info.email_address' | translate}}</mat-label>
+      <input matInput formControlName="email" placeholder="{{'core.user_info.email_address' | translate}}" name="email" required />
     </mat-form-field>
     <mat-form-field class="full-width">
-      <mat-label>Password</mat-label>
-      <input matInput formControlName="password" type="password" placeholder="Password" name="password" required />
+      <mat-label>{{'core.password' | translate}}</mat-label>
+      <input matInput formControlName="password" type="password" placeholder="{{'core.password' | translate}}" name="password" required />
     </mat-form-field>
     <section class="optin-prime-section">
-      <mat-checkbox formControlName="isprime" class="isPrime" name="isprime">Opt-in Prime membership</mat-checkbox>
+      <mat-checkbox formControlName="isprime" class="isPrime" name="isprime">{{'core.user_info.optin-checkobox-label' | translate}}</mat-checkbox>
     </section>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button class="signup-form-sumit" (click)="register()" color="primary">REGISTER</button>
   </mat-card-actions>
 </form>
-<a [routerLink]="['/login']" routerLinkActive="router-link-active">Already a user? Click to login!</a>
+<a [routerLink]="['/login']" routerLinkActive="router-link-active">{{ "already-user" | translate}}</a>

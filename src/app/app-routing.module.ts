@@ -17,7 +17,7 @@ import { AuthPrimeGuard } from './auth-prime.guard';
 const routes: Routes = [
   {
     path: "shows",
-    canActivate:[AuthPrimeGuard],
+    canActivate:[AuthGuard],
     component: ShowListComponent
   },
   {
@@ -52,7 +52,7 @@ const routes: Routes = [
   },
   {
     path: "searchpage/:searchtext",
-    canActivate:[AuthPrimeGuard],
+    canActivate:[AuthGuard],
     component: SearchPageComponent
   }
 ];
