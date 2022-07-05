@@ -1,4 +1,5 @@
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { CustomerService } from 'src/app/features/customer/services/customer.service';
 import { IShow } from '../../../features/shows/interfaces/show.interface';
 
 @Component({
@@ -10,15 +11,14 @@ export class ShowComponent {
 
   @Input() show?: IShow;
 
-  watchClick() {
-    console.log("watchClick");
+  constructor(private customerService: CustomerService) {
   }
 
   watchLaterClick() {
-    console.log("watchLaterClick");
+    this.customerService.addCustomerShow(this.show?.name || '', 'watchLater');
   }
 
   favoriteClick() {
-    console.log("favoriteClick");
+    this.customerService.addCustomerShow(this.show?.name || '', 'favorite');
   }
 }

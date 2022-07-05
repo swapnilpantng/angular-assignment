@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService } from 'src/app/shared/messages/services/message.service';
-import { ICustomer } from '../interfaces/customer.interface';
+import { ICustomer, IList } from '../interfaces/customer.interface';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of, Subject, throwError } from 'rxjs';
+import { observable, Observable, of, Subject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,28 +31,50 @@ export class CustomerService {
 
   /** GET Customer by id. Will 404 if id not found */
   getCustomer(id: number): Observable<ICustomer> {
-    const url = `${this.customersUrl}/${id}`;
+    const url = `${this.customersUrl}${id}`;
     return this.http.get<ICustomer>(url).pipe(
       catchError(this.handleError<ICustomer>(`getCustomer id=${id}`))
     );
   }
 
-  /**
- * Handle Http operation that failed.
- * Let the app continue.
- *
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
+  getCurrentCustomer(): Observable<ICustomer> {
+    const id = Number(localStorage.getItem('id'));
+    return this.getCustomer(id);
+  }
+
+  public updateCustomer(customer: ICustomer) {
+    return this.http.put<ICustomer>(`${this.customersUrl}${customer.id}`, customer)
+  }
+
+  public addCustomerShow(showname: string, type: string) {
+    let currentcustomer = this.getCurrentCustomer();
+    currentcustomer.subscribe(customer => {
+      customer[type as keyof IList].push(showname);
+      this.updateCustomer(customer).subscribe({
+        error: error => {
+          console.error('There was an error!', error);
+        }
+      });
+      this.getCustomers().subscribe(customers => { console.log(customers) });
+    })
+  }
+
+  public updatePrimeStatus(status: string) {
+    let currentcustomer = this.getCurrentCustomer();
+    currentcustomer.subscribe(customer => {
+      customer.isPrime = Boolean(status);
+      this.updateCustomer(customer).subscribe({
+        error: error => {
+          console.error('There was an error!', error);
+        }
+      });
+      this.getCustomers().subscribe(customers => { console.log(customers) });
+    })
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
@@ -80,9 +102,27 @@ export class CustomerService {
   }
 
   logOut() {
+    localStorage.removeItem('id');
     localStorage.removeItem('user');
     localStorage.removeItem('isprime');
     this.loggedIn = false;
     this.logger.next(this.loggedIn);
+  }
+
+  retrieveSession() {
+    this.getCurrentCustomer().subscribe(customer => {
+      if (customer == undefined){
+        this.loggedIn = false;
+        this.logger.next(this.loggedIn);
+        return;
+      }
+      localStorage.setItem('id', String(customer.id));
+      localStorage.setItem('user', customer.email);
+      localStorage.setItem('isprime', String(customer.isPrime));
+      this.loggedIn = true;
+      this.logger.next(this.loggedIn);
+    })
+
+
   }
 }

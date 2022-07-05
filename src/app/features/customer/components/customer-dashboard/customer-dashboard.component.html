@@ -1,40 +1,36 @@
-<h2>Customer Dashboard</h2>
-<!--
-<ul class="customers">
-  <li *ngFor="let customer of customers">
-      <span class="badge">{{customer.id}}</span> {{customer.name}}
-  </li>
-</ul> -->
+<div class="container-fluid" *ngIf="customer != undefined">
+  <h2>{{ 'core.user_info.title-dashboard'| translate}}</h2>
+  <mat-card-title>{{ 'core.user_info.name' | translate}}: {{ customer?.name }}</mat-card-title>
 
+  <form class="signup-form" [formGroup]="form">
+    <mat-card-content>
+      <section class="optin-prime-section">
+        <mat-checkbox formControlName="isprime" class="isPrime" name="isprime">{{ 'core.user_info.optin-checkobox-label'| translate}}</mat-checkbox>
+      </section>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="btn" mat-raised-button (click)="updatePrimeStatus()" color="primary">{{"save" | translate}}</button>
+    </mat-card-actions>
+  </form>
 
-<form class="signup-form" [formGroup]="form">
-  <mat-card-content>
-    <!-- <mat-form-field class="full-width invisible">
-      <input class="invisible" matInput name="id" />
-    </mat-form-field> -->
-    <!-- <mat-form-field class="full-width">
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="name" placeholder="Name" name="name" required />
-    </mat-form-field>
-    <mat-form-field class="full-width">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" placeholder="Email" name="email" required />
-    </mat-form-field> -->
-    <!-- <mat-form-field>
-      <mat-label>Date of Birth</mat-label>
-      <input matInput [matDatepicker]="dob" placeholder="Choose a date" />
-      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
-      <mat-datepicker #dob></mat-datepicker>
-    </mat-form-field> -->
-    <!-- <mat-form-field class="full-width">
-      <mat-label>Password</mat-label>
-      <input matInput formControlName="password" type="password" placeholder="Password" name="password" required />
-    </mat-form-field> -->
-    <section class="optin-prime-section">
-      <mat-checkbox formControlName="isprime" class="isPrime" name="isprime">Opt-in Prime membership</mat-checkbox>
-    </section>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="updatePrimeStatus()" color="primary">Save</button>
-  </mat-card-actions>
-</form>
+  <div class="all-extra-info">
+    <div class="extra-info" *ngIf="customer.watched">
+      <mat-label>{{'core.user_info.watched'| translate}}: </mat-label>
+      <div class="right">
+        <span scope="col" *ngFor="let watched of customer.watched"> {{watched}} </span>
+      </div>
+    </div>
+    <div class="extra-info" *ngIf="customer.favorite">
+      <mat-label>{{'core.user_info.favorite'| translate}}: </mat-label>
+      <div class="right">
+        <span scope="col" *ngFor="let favorite of customer.favorite"> {{favorite}} </span>
+      </div>
+    </div>
+    <div class="extra-info" *ngIf="customer.watchLater">
+      <mat-label>{{'core.user_info.watch-later'| translate}}: </mat-label>
+      <div class="right">
+        <span scope="col" *ngFor="let watchLater of customer.watchLater"> {{watchLater}} </span>
+      </div>
+    </div>
+  </div>
+</div>

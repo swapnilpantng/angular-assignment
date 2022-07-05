@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit {
     );
 
   ngOnInit(): void {
+    this.customerService.retrieveSession();
     this.customerService.isLoggedIn().subscribe(loggedIn => {
       this.isLogin = loggedIn;
     });

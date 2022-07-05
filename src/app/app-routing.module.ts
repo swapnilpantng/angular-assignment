@@ -11,12 +11,13 @@ import { CustomerDashboardComponent } from './features/customer/components/custo
 import { HomepageComponent } from './core/components/homepage/homepage.component';
 import { ShowDetailComponent } from './features/shows/components/show-detail/show-detail.component';
 import { SearchPageComponent } from './features/search/components/search-page/search-page.component';
+import { AuthPrimeGuard } from './auth-prime.guard';
 
 
 const routes: Routes = [
   {
     path: "shows",
-    canActivate:[AuthGuard],
+    canActivate:[AuthPrimeGuard],
     component: ShowListComponent
   },
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
   },
   {
     path: "customerDashboard",
+    canActivate:[AuthGuard],
     component: CustomerDashboardComponent
   },
   {
@@ -45,12 +47,12 @@ const routes: Routes = [
   },
   {
     path: "show-detail/:id",
-    canActivate:[AuthGuard],
+    canActivate:[AuthPrimeGuard],
     component: ShowDetailComponent
   },
   {
     path: "searchpage/:searchtext",
-    canActivate:[AuthGuard],
+    canActivate:[AuthPrimeGuard],
     component: SearchPageComponent
   }
 ];

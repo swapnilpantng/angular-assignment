@@ -1,11 +1,17 @@
 export interface ICustomer {
   id: number;
   name: string;
-  // dob: string;
   email: string;
   password: string;
   isPrime: Boolean;
-  watched: any;
-  favorite: any;
-  watchLater: any;
+  watched: Array<string>;
+  favorite: Array<string>;
+  watchLater: Array<string>;
+}
+
+
+export interface IList {
+  watched: Array<string>;
+  favorite: Array<string>;
+  watchLater: Array<string>;
 }

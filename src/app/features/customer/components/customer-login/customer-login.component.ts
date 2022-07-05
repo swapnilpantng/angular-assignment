@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
+import { MessageService } from 'src/app/shared/messages/services/message.service';
 import { ICustomer } from '../../interfaces/customer.interface';
 import { CustomerService } from '../../services/customer.service';
 
@@ -12,7 +13,7 @@ import { CustomerService } from '../../services/customer.service';
 })
 export class CustomerLoginComponent implements OnInit {
 
-  constructor(private customerService: CustomerService, private routes: Router, private translate: TranslateService) { }
+  constructor(private customerService: CustomerService, private routes: Router, private translate: TranslateService, private messageService: MessageService) { }
   msg!: string;
   username!: string;
   password!: string;
@@ -34,9 +35,7 @@ export class CustomerLoginComponent implements OnInit {
       })
       if (output.length > 0) {
         this.customerService.setSession(output[0]);
-        this.translate.get('core.welcome', { loggedinuser: output[0].name }).subscribe((data: any) => {
-          this.customerService.log(data);
-        });
+        this.messageService.add(this.translate.instant('core.welcome', { loggedinuser: output[0].name }));
         this.routes.navigate(['/shows']);
       }
       else {

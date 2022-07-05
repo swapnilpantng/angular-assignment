@@ -4,6 +4,7 @@ import { IShow } from '../../interfaces/show.interface';
 import { ShowsService } from '../../services/shows.service';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { CustomerService } from 'src/app/features/customer/services/customer.service';
 
 @Component({
   selector: 'app-show-detail',
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class ShowDetailComponent implements OnInit {
 
-  constructor(public showsService: ShowsService, private route: ActivatedRoute) { }
+  constructor(public showsService: ShowsService, private route: ActivatedRoute, private customerService: CustomerService) { }
   @Input() id!: number;
   show$!: Observable<IShow>;
   ngOnInit(): void {
@@ -20,6 +21,9 @@ export class ShowDetailComponent implements OnInit {
       switchMap((params: ParamMap) =>
         this.showsService.getShow(Number(params.get('id')!)))
     );
+    this.show$.subscribe(show => {
+      this.customerService.addCustomerShow(show.name, "watched");
+    })
   }
 
 }

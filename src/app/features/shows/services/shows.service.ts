@@ -38,7 +38,17 @@ export class ShowsService {
           description: "Amazing show",
           language: "English",
           genre: "Comedy",
-          rating: 4,
+          rating: 9,
+          image: ""
+        },
+        {
+          id: 2,
+          name: "Sample Show 2",
+          title: "Great show",
+          description: "Amazing show",
+          language: "English",
+          genre: "Comedy",
+          rating: 8,
           image: ""
         }
       ]);

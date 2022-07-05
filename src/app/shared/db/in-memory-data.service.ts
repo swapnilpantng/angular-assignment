@@ -14,15 +14,15 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 2, name: "Sample Show 3", title: "drama show", description: "drama show", language: "Korean", genre: "Drama", rating: 3, image: "https://material.angular.io/assets/img/examples/shiba2.jpg" }
     ];
     const customers = [
-      { id: 12, name: 'Dr. Nice', email: "swapnil@gmail.com", password: "admin", isPrime: false },
-      { id: 13, name: 'Bombasto', email: "sdasd@dsadas.com", password: "admin", isPrime: false },
+      { id: 12, name: 'Dr. Nice', email: "swapnil@gmail.com", password: "admin", isPrime: true, watched:['IT','Batmen'],favorite:['AOT','titan'],watchLater:['boruto','onepice']},
+      { id: 13, name: 'Bombasto', email: "sdasd@dsadas.com", password: "admin", isPrime: false, watched:['IT','Batmen'],favorite:['AOT','titan'],watchLater:['boruto','onepice']},
       { id: 14, name: 'Celeritas', email: "sdasd@dsadas.com", password: "admin", isPrime: false },
       { id: 15, name: 'Magneta', email: "sdasd@dsadas.com", password: "admin", isPrime: false },
       { id: 16, name: 'RubberMan', email: "sdasd@dsadas.com", password: "admin", isPrime: false },
-      { id: 17, name: 'Dynama', email: "sdasd@dsadas.com", password: "admin", isPrime: false },
+      { id: 17, name: 'Dynama', email: "sdasd@dsadas.com", password: "admin", isPrime: false, watched:['IT','Batmen'],favorite:['AOT','titan'],watchLater:['boruto','onepice'] },
       { id: 18, name: 'Dr. IQ', email: "sdasd@dsadas.com", password: "admin", isPrime: false },
-      { id: 19, name: 'Magma', email: "sdasd@dsadas.com", password: "admin", isPrime: false },
-      { id: 20, name: 'Tornado', email: "sdasd@dsadas.com", password: "admin", isPrime: false }
+      { id: 19, name: 'Magma', email: "sdasd@dsadas.com", password: "admin", isPrime: false , watched:['IT','Batmen'],favorite:['AOT','titan'],watchLater:['boruto','onepice']},
+      { id: 20, name: 'Tornado', email: "sdasd@dsadas.com", password: "admin", isPrime: false, watched:['IT','Batmen'],favorite:['AOT','titan'],watchLater:['boruto','onepice'] }
     ];
     const reviews = [
       {id:1, showid:1, comment: "work of art", rating: 8, customername:"swapnil"},

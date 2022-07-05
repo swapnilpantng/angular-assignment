@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ICustomer } from '../../interfaces/customer.interface';
 import { CustomerService } from '../../services/customer.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { MessageService } from 'src/app/shared/messages/services/message.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -12,33 +14,30 @@ import { Observable } from 'rxjs';
 })
 export class CustomerDashboardComponent implements OnInit {
   form!: FormGroup;
-  customers: ICustomer[] = [];
+  @Input() customer!: ICustomer;
 
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private routes: Router,
-    private customerService: CustomerService) { }
+    private customerService: CustomerService,
+    private messageService: MessageService,
+    private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       isprime: ['']
     });
-    this.customerService.getCustomer(Number(localStorage.getItem('id'))).subscribe( customer => {
+    this.customerService.getCustomer(Number(localStorage.getItem('id'))).subscribe(customer => {
+      this.customer = customer
       this.form = this.formBuilder.group({
-        name: [customer.name, Validators.required],
-        email: [customer.email, [Validators.required, Validators.email]],
         isprime: [customer.isPrime]
       });
     });
-    // this.getCustomers();
   }
 
-  getCustomers(): void {
-    this.customerService.getCustomers()
-    .subscribe(customers => this.customers = customers);
-  }
-
-  updatePrimeStatus(){
+  updatePrimeStatus() {
+    this.customerService.updatePrimeStatus(this.form.controls['isprime'].value);
+    this.messageService.add(this.translateService.instant("prime-update"))
     localStorage.setItem('isprime', String(this.form.controls['isprime'].value))
   }
 }
