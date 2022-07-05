@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MessageService } from 'src/app/shared/messages/services/message.service';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -20,8 +19,7 @@ export class CustomerDashboardComponent implements OnInit {
     private route: ActivatedRoute,
     private routes: Router,
     private customerService: CustomerService,
-    private messageService: MessageService,
-    private translateService: TranslateService) { }
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -37,7 +35,7 @@ export class CustomerDashboardComponent implements OnInit {
 
   updatePrimeStatus() {
     this.customerService.updatePrimeStatus(this.form.controls['isprime'].value);
-    this.messageService.add(this.translateService.instant("prime-update"))
+    this.messageService.add("prime-update")
     localStorage.setItem('isprime', String(this.form.controls['isprime'].value))
   }
 }

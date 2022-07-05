@@ -14,7 +14,6 @@ import { AuthGuard } from './auth.guard';
 import { InMemoryDataService } from './shared/db/in-memory-data.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { SearchModule } from './features/search/search.module';
-// import { appReducer } from './state/app.reducers';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { SearchModule } from './features/search/search.module';
     AdminModule,
     CustomerModule,
     StoreModule.forRoot({
-      // "root": appReducer
     }),
     EffectsModule.forRoot(),
     HttpClientInMemoryWebApiModule.forRoot(

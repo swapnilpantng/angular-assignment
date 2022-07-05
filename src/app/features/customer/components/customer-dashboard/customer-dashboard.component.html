@@ -14,19 +14,19 @@
   </form>
 
   <div class="all-extra-info">
-    <div class="extra-info" *ngIf="customer.watched">
+    <div class="extra-info watched" *ngIf="customer.watched">
       <mat-label>{{'core.user_info.watched'| translate}}: </mat-label>
       <div class="right">
         <span scope="col" *ngFor="let watched of customer.watched"> {{watched}} </span>
       </div>
     </div>
-    <div class="extra-info" *ngIf="customer.favorite">
+    <div class="extra-info favorite" *ngIf="customer.favorite">
       <mat-label>{{'core.user_info.favorite'| translate}}: </mat-label>
       <div class="right">
         <span scope="col" *ngFor="let favorite of customer.favorite"> {{favorite}} </span>
       </div>
     </div>
-    <div class="extra-info" *ngIf="customer.watchLater">
+    <div class="extra-info watch-later" *ngIf="customer.watchLater">
       <mat-label>{{'core.user_info.watch-later'| translate}}: </mat-label>
       <div class="right">
         <span scope="col" *ngFor="let watchLater of customer.watchLater"> {{watchLater}} </span>

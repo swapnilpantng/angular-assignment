@@ -4,6 +4,7 @@ import { MessageService } from 'src/app/shared/messages/services/message.service
 import { ICustomer, IList } from '../interfaces/customer.interface';
 import { catchError, map, tap } from 'rxjs/operators';
 import { observable, Observable, of, Subject, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class CustomerService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private router: Router) { }
 
   public log(message: string) {
     this.messageService.add(`CustomerService: ${message}`);
@@ -46,17 +48,33 @@ export class CustomerService {
     return this.http.put<ICustomer>(`${this.customersUrl}${customer.id}`, customer)
   }
 
-  public addCustomerShow(showname: string, type: string) {
-    let currentcustomer = this.getCurrentCustomer();
-    currentcustomer.subscribe(customer => {
-      customer[type as keyof IList].push(showname);
-      this.updateCustomer(customer).subscribe({
-        error: error => {
-          console.error('There was an error!', error);
-        }
-      });
-      this.getCustomers().subscribe(customers => { console.log(customers) });
-    })
+  public addCustomerShow(showname: string, type: string): boolean {
+    if (localStorage.getItem('user') != null) {
+      if (localStorage.getItem('isprime') != null && localStorage.getItem('isprime') == 'true') {
+        let currentcustomer = this.getCurrentCustomer();
+        currentcustomer.subscribe(customer => {
+          customer[type as keyof IList].push(showname);
+          this.updateCustomer(customer).subscribe({
+            error: error => {
+              console.error('There was an error!', error);
+              return false;
+            }
+          });
+          this.getCustomers().subscribe(customers => { console.log(customers) });
+          this.messageService.add('you-have-' + type, { showname: showname });
+          return true;
+        })
+      }
+      else {
+        this.messageService.add('core.no-prime-message');
+        return false;
+      }
+    }
+    else {
+      this.messageService.add(`core.no-login`);
+      return false;
+    }
+    return false;
   }
 
   public updatePrimeStatus(status: string) {
@@ -111,7 +129,7 @@ export class CustomerService {
 
   retrieveSession() {
     this.getCurrentCustomer().subscribe(customer => {
-      if (customer == undefined){
+      if (customer == undefined) {
         this.loggedIn = false;
         this.logger.next(this.loggedIn);
         return;

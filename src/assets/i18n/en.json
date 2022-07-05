@@ -13,13 +13,17 @@
       "favorite": "Favorite",
       "watch-later": "Watch Later",
       "title-dashboard": "Customer Dashboard",
-      "optin-checkobox-label":"Opt-in Prime membership"
+      "optin-checkobox-label": "Opt-in Prime membership"
     },
     "changelanguage": "Change Language :",
     "login": "Login",
     "moto": "Streaming Platform",
     "shows": "Shows",
-    "no-prime-message": "Not a prime subscription. Feature limited to prime user only"
+    "no-prime-message": "Not a prime subscription. Feature limited to prime user only",
+    "no-login": "Please login first",
+    "username": "Username",
+    "password": "Password",
+    "invalid-credential": "Invalid Username or Password"
   },
   "product": {
     "id": "ID:"
@@ -38,5 +42,11 @@
   "comment": "User Comment",
   "save": "Save",
   "clear-message": "Clear Messages",
-  "prime-update": "Prime Status is updated"
+  "prime-update": "Prime Status is updated",
+  "new-user": "New user? Click to signup!",
+  "shows": "Shows",
+  "logout": "log out",
+  "you-have-watched": "You have watched {{showname}}",
+  "you-have-favorite": "You have added {{showname}} to favorite",
+  "you-have-watchLater": "You have added {{showname}} to Watch Later"
 }

@@ -1,7 +1,6 @@
 import { NgModule, Optional, SkipSelf} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
-import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { SharedModule } from '../shared/shared.module';
 import { HomepageComponent } from './components/homepage/homepage.component';
 
@@ -15,8 +14,7 @@ export class EnsureModuleLoadedOnceGuard {
 }
 
 const components = [
-  HeaderComponent,
-  SideNavComponent]
+  HeaderComponent]
 
 @NgModule({
   declarations: [

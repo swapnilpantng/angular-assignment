@@ -3,7 +3,6 @@ import { IShow } from '../../interfaces/show.interface';
 import { ShowsService } from '../../services/shows.service';
 import { AddShowAction, LoadShow } from 'src/app/features/shows/state/show.actions';
 import { Store } from '@ngrx/store';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-show-list',
@@ -16,7 +15,6 @@ export class ShowListComponent implements OnInit {
   public noOfShows = 0;
 
   constructor(
-    public translate: TranslateService,
     private showsService: ShowsService) { }
 
   @Input() shows: Array<IShow> = [];

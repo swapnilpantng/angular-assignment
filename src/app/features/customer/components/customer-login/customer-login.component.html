@@ -9,20 +9,25 @@
         <tr>
           <td>
             <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+              <input matInput placeholder="{{'core.username'| translate}}" [(ngModel)]="username" name="username"
+                required>
             </mat-form-field>
           </td>
         </tr>
         <tr>
-        <td><mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-        </mat-form-field></td>
-      </tr></table>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="{{'core.password'| translate}}" [(ngModel)]="password" type="password"
+                name="password" required>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
     </form>
     <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="checkLogin()" color="primary">Login</button>
+    <button mat-raised-button (click)="checkLogin()" color="primary">{{'core.login' | translate }}</button>
   </mat-card-actions>
-  <a [routerLink]="['/signup']" routerLinkActive="router-link-active" >New user? Click to signup!</a>
+  <a [routerLink]="['/signup']" routerLinkActive="router-link-active">{{ "new-user" | translate }}</a>
 </mat-card>

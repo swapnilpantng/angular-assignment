@@ -11,12 +11,6 @@
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" placeholder="Email" name="email" required />
     </mat-form-field>
-    <!-- <mat-form-field>
-      <mat-label>Date of Birth</mat-label>
-      <input matInput [matDatepicker]="dob" placeholder="Choose a date" />
-      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
-      <mat-datepicker #dob></mat-datepicker>
-    </mat-form-field> -->
     <mat-form-field class="full-width">
       <mat-label>Password</mat-label>
       <input matInput formControlName="password" type="password" placeholder="Password" name="password" required />
@@ -26,7 +20,7 @@
     </section>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="register()" color="primary">REGISTER</button>
+    <button mat-raised-button class="signup-form-sumit" (click)="register()" color="primary">REGISTER</button>
   </mat-card-actions>
 </form>
 <a [routerLink]="['/login']" routerLinkActive="router-link-active">Already a user? Click to login!</a>

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ICustomer } from '../../interfaces/customer.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from '../../services/customer.service';
+import { MessageService } from 'src/app/shared/messages/services/message.service';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -18,7 +19,8 @@ export class CustomerSignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private routes: Router,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class CustomerSignupComponent implements OnInit {
 
     this.customerService.register(customer).subscribe(response => {
       this.customerService.log(`Registration successful with id:${response.id}`);
-      this.customerService.log(`Welcome ${response.name}`);
+      this.messageService.add('core.welcome', { loggedinuser: response.name });
       this.customerService.setSession(response);
       this.customerService.getCustomers().subscribe(customer => {
       })

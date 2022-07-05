@@ -28,10 +28,10 @@
           {{ "core.user_info.myaccount" | translate }}
         </button>
         <button mat-button color="primary" (click)="this.routeService.goto('shows')">
-          Shows
+          {{ "shows" | translate}}
         </button>
         <button mat-button color="primary" (click)="logout()">
-          log out
+          {{"logout" | translate}}
         </button>
       </mat-expansion-panel>
     </mat-accordion>
